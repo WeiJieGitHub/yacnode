@@ -22,15 +22,13 @@ module.exports = {
     }),
   ],
   module: {
-    rules: [
-    {
+    rules: [{
       test: /\.jsx?$/,
       loader: 'eslint-loader',
       include: SRC_PATH,
       exclude: /node_modules/,
       enforce: 'pre',
-    },
-      {
+    }, {
       test: /\.scss$/,
       use: [
         {
@@ -52,11 +50,12 @@ module.exports = {
         }
       ],
       include: SRC_PATH,
-    },{
+    }, {
       test: /\.jsx?$/,
-      loader: 'babel-loader?sourceMap',
+      loader: 'babel-loader',
       include: SRC_PATH,
       options: {
+        sourceMap: true,
         presets: ['es2015', 'react'],
       },
       exclude: /node_modules/,

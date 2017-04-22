@@ -2,4 +2,5 @@ node_modules
 dist
 *.swp
 *.~
+test/unit/coverageReport
 .DS_Store

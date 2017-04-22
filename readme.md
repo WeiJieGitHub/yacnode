@@ -3,7 +3,7 @@
 
 ## 编码规范
 
-使用 Eslint 检测 JavaScript 相关代码，使用 Style 检测 CSS 相关代码。
+使用 EsLint 检测 JavaScript 相关代码，使用 StyleLint 检测 CSS 相关代码。
 
 1. ES6 规范：[airbnb 的 ES6 编码规范](https://github.com/airbnb/javascript)
 2. React/JSX 规范：[airbnb 的 React/JSX 编码规范](https://github.com/airbnb/javascript/tree/master/react)
