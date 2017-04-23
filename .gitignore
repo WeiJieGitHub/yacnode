@@ -3,4 +3,6 @@ dist
 *.swp
 *.~
 test/unit/coverageReport
+test/functional/reports
 .DS_Store
+*.log
