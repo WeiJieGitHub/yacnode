@@ -14,6 +14,7 @@ module.exports = {
         presets: ['es2015', 'react'],
         plugins: ['istanbul'],
       },
+      exclude: /node_modules/,
     }, {
       test: /\.scss$/,
       use: [{
@@ -42,4 +43,11 @@ module.exports = {
       'styles': path.resolve(SRC_PATH, 'styles'),
     },
   },
+  // 这是个 hack!
+  // 相关链接: https://github.com/airbnb/enzyme/blob/master/docs/guides/webpack.md
+  externals: {
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true,
+  }
 }
