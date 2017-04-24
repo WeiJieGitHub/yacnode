@@ -22,6 +22,14 @@
 React 和 Redux 本身推崇的函数式编程的理念，除了文绉绉以外，还有一个优点就是方便测试，所以干嘛不趁来一发测试驱动开发呢，分为单元测试和功能测试，大约用到了下边一些东西。
 
 1. karma
-2. mocha
-3. chai
+2. jasmine
+3. enzyme
 4. nightwatch
+
+## 脚本
+
+1. 单次运行单元测试 `npm run test-unit`
+2. 单次运行功能测试 `npm run test-functional`
+3. 启动单元测试服务 `npm run karma`
+4. 启动开发服务器 `npm run dev`
+5. 构建项目 `npm run build`
