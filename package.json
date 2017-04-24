@@ -4,10 +4,15 @@
   "description": "yet anthor cnode client",
   "main": "index.js",
   "scripts": {
-    "test-functional": "nightwatch --config test/functional/nightwatch.config.js --env chrome",
-    "test-unit": "karma start test/unit/karma.config.js --single-run",
+    "_unit-test-lint": "eslint test/unit/specs/*spec.js* test/unit/resource/**/*.js* --config eslintrc.test.js",
+    "_functional-test-lint": "eslint test/functional/specs/*spec.js test/functional/assertions/**/*.js --config eslintrc.test.js",
+    "_karma-single": "karma start test/unit/karma.config.js --single-run",
+    "test-unit": "npm run _unit-test-lint & npm run _karma-single",
+    "test-functional": "npm run _functional-test-lint & nightwatch --config test/functional/nightwatch.config.js --env chrome",
     "build": "webpack -p --progress --profile --colors --config build/webpack.production.config.js",
-    "dev": "webpack-dev-server --hot --inline  --config build/webpack.dev.config.js"
+    "dev": "webpack-dev-server --hot --inline  --config build/webpack.dev.config.js",
+    "karma": "karma start test/unit/karma.config.js --auto-watch",
+    "lint": "eslint src/"
   },
   "keywords": [
     "react",

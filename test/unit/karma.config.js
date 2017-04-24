@@ -1,5 +1,5 @@
 const webpackConfig = require('../../build/webpack.test.config');
-const fileGlob = './specs/*spec.js';
+const fileGlob = './specs/*spec.js*';
 
 module.exports = (config) => {
   config.set({
