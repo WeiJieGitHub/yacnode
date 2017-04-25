@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const config = require('../config');
 
 const ROOT_PATH = path.resolve(__dirname, '..');
 const SRC_PATH = path.resolve(ROOT_PATH, 'src');
@@ -8,6 +9,10 @@ const DIST_PATH = path.resolve(ROOT_PATH, 'dist');
 
 module.exports = {
   devtool: 'source-map',
+  devServer: {
+    port: config.PORT,
+    host: config.HOST,
+  },
   entry: {
     app: path.resolve(SRC_PATH, 'app.jsx'),
   },

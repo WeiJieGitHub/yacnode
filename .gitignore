@@ -6,3 +6,4 @@ test/unit/coverageReport
 test/functional/reports
 .DS_Store
 *.log
+config.js
