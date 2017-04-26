@@ -8,13 +8,14 @@ describe('start up', () => {
     expect(true).toBe(true);
   });
 
-  it('can test jsx', () => {
+  it('should import style', () => {
+    expect(style).toBeDefined();
+  });
+
+  it('should test jsx', () => {
     const testComponent = shallow(<TestComponent />);
     const h1 = testComponent.find('h1');
     expect(h1.text()).toEqual('Hello World');
-  });
-
-  it('can import style', () => {
-    expect(style).toBeDefined();
+    expect(h1.hasClass(style.title)).toBe(true);
   });
 });

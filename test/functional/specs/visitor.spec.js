@@ -1,7 +1,7 @@
 const { HOST, PORT, TIMEOUT } = require('../../../config');
 
 module.exports = {
-  'can render correct pages through routes': (browser) => {
+  'should render correct pages through routes': (browser) => {
     // 一个访客在编程社区上看到了网站的链接，
     // 通过链接，他来到了网站的首页。
     const client = browser.url(`http://${HOST}:${PORT}`);

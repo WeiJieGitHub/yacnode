@@ -26,4 +26,5 @@ Index.defaultProps = {
   },
 };
 
+export { Index };
 export default connect(state => ({ store: state.index }))(Index);
