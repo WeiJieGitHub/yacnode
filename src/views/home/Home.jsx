@@ -2,29 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Sub from 'components/Sub';
-import style from './Index.scss';
+import style from './Home.scss';
 
-function Index(props) {
+export function Home(props) {
   const { title } = props.store;
   return (
     <div>
-      <h1 className={style.title} data-role="title">{ title }</h1>
+      <h1 className={style.title} data-role="home">{ title }</h1>
       <Sub />
     </div>
   );
 }
 
-Index.propTypes = {
+Home.propTypes = {
   store: PropTypes.shape({
     title: PropTypes.string.isRequired,
   }),
 };
 
-Index.defaultProps = {
+Home.defaultProps = {
   store: {
     title: '',
   },
 };
 
-export { Index };
-export default connect(state => ({ store: state.index }))(Index);
+export default connect(state => ({ store: state.index }))(Home);

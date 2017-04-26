@@ -1,5 +1,5 @@
 const initialState = {
-  title: 'CNode',
+  title: 'home',
 };
 
 export default function (state = initialState, action) {

@@ -74,6 +74,7 @@ module.exports = {
       'utils': path.resolve(SRC_PATH, 'utils'),
       'containers': path.resolve(SRC_PATH, 'containers'),
       'styles': path.resolve(SRC_PATH, 'styles'),
+      'layouts': path.resolve(SRC_PATH, 'layouts'),
     },
   },
 };

@@ -1,5 +1,5 @@
-import IndexReducer from 'views/IndexRedux';
+import HomeReducer from 'views/home/HomeRedux';
 
 export default {
-  index: IndexReducer,
+  index: HomeReducer,
 };

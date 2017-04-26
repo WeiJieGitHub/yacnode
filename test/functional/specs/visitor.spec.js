@@ -9,6 +9,9 @@ module.exports = {
     // 他注意到了网页抬头处的标题「CNode」。
     client.assert.containsText('[data-role=title]', 'CNode');
 
+    // 首页显示着「Home」
+    client.assert.containsText('[data-role=home]', 'home');
+
     client.end();
   },
 };

@@ -7,7 +7,7 @@ module.exports = (config) => {
     files: [fileGlob],
     webpack: webpackConfig,
     webpackMiddleware: {
-      noInfo: true
+      stats: 'errors-only',
     },
     preprocessors: {
       [fileGlob]: ['webpack'],

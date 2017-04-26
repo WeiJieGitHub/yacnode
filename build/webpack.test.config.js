@@ -8,6 +8,14 @@ module.exports = {
   module: {
     rules: [{
       test: /\.jsx?$/,
+      loader: 'eslint-loader',
+      exclude: /node_modules/,
+      enforce: 'pre',
+      options: {
+        configFile: ROOT_PATH + '/eslintrc.test.js',
+      },
+    }, {
+      test: /\.jsx?$/,
       loader: 'babel-loader',
       options: {
         sourceMap: true,
@@ -41,6 +49,7 @@ module.exports = {
       'utils': path.resolve(SRC_PATH, 'utils'),
       'containers': path.resolve(SRC_PATH, 'containers'),
       'styles': path.resolve(SRC_PATH, 'styles'),
+      'layouts': path.resolve(SRC_PATH, 'layouts'),
     },
   },
   // 这是个 hack!

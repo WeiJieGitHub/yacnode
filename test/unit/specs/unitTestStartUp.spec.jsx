@@ -13,8 +13,8 @@ describe('start up', () => {
   });
 
   it('should test jsx', () => {
-    const testComponent = shallow(<TestComponent />);
-    const h1 = testComponent.find('h1');
+    const enzymeWrapper = shallow(<TestComponent />);
+    const h1 = enzymeWrapper.find('h1');
     expect(h1.text()).toEqual('Hello World');
     expect(h1.hasClass(style.title)).toBe(true);
   });
