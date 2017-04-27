@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { Home } from 'views/home/Home';
 
 describe('views Home', () => {
-  it('should show custom title', () => {
+  it('should show content', () => {
     const store = {
       title: 'home',
     };

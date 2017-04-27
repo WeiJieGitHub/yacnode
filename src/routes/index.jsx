@@ -1,13 +1,11 @@
 import React from 'react';
-import { ConnectedRouter } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
+import { HashRouter } from 'react-router-dom';
 import Frame from 'layouts/frame/Frame';
 
-const history = createHistory();
 const routes = (
-  <ConnectedRouter history={history}>
+  <HashRouter>
     <Frame />
-  </ConnectedRouter>
+  </HashRouter>
 );
 
 export default routes;

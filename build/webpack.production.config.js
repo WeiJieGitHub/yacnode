@@ -57,6 +57,7 @@ module.exports = {
       'utils': path.resolve(SRC_PATH, 'utils'),
       'containers': path.resolve(SRC_PATH, 'containers'),
       'styles': path.resolve(SRC_PATH, 'styles'),
+      'reduxConf': path.resolve(SRC_PATH, 'redux'),
     },
   },
 };
