@@ -8,6 +8,8 @@ import AskView from 'views/ask/Ask';
 import JobView from 'views/job/Job';
 import Header from 'layouts/header/Header';
 
+import 'styles/reset.scss';
+
 function Frame() {
   return (
     <div>
