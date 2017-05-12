@@ -8,7 +8,7 @@ import AskView from 'views/ask/Ask';
 import JobView from 'views/job/Job';
 import Header from 'layouts/header/Header';
 
-import 'styles/reset.scss';
+import 'styles/index.scss';
 
 function Frame() {
   return (
