@@ -9,6 +9,7 @@ const DIST_PATH = path.resolve(ROOT_PATH, 'dist');
 
 module.exports = {
   devtool: 'source-map',
+  context : ROOT_PATH,
   devServer: {
     port: config.PORT,
     host: config.HOST,
@@ -43,7 +44,7 @@ module.exports = {
           options: {
             sourceMap: true,
             modules: true,
-            localIdentName: '[name]__[local]-[hash:base64:5]',
+            localIdentName: '[name]__[local]--[hash:base64:5]',
           },
         }, {
           loader: 'postcss-loader',
@@ -64,6 +65,9 @@ module.exports = {
         presets: ['es2015', 'react'],
       },
       exclude: /node_modules/,
+    }, {
+      test: /\.svg$/,
+      loader: 'file-loader',
     }],
   },
   resolve: {
@@ -74,6 +78,7 @@ module.exports = {
       'utils': path.resolve(SRC_PATH, 'utils'),
       'containers': path.resolve(SRC_PATH, 'containers'),
       'styles': path.resolve(SRC_PATH, 'styles'),
+      'assets': path.resolve(SRC_PATH, 'assets'),
       'layouts': path.resolve(SRC_PATH, 'layouts'),
       'reduxConf': path.resolve(SRC_PATH, 'redux'),
     },

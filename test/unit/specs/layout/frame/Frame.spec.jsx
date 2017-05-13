@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from 'reduxConf/configureStore';
-import Frame from 'layouts/frame/Frame';
+import Frame from 'layouts/Frame';
 
 describe('layout Frame', () => {
   it('should contain Header', () => {

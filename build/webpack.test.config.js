@@ -39,6 +39,9 @@ module.exports = {
       }, {
         loader: 'sass-loader',
       }],
+    }, {
+      test: /\.svg$/,
+      loader: 'file-loader',    
     }],      
   },
   resolve: {
@@ -50,6 +53,7 @@ module.exports = {
       'containers': path.resolve(SRC_PATH, 'containers'),
       'styles': path.resolve(SRC_PATH, 'styles'),
       'layouts': path.resolve(SRC_PATH, 'layouts'),
+      'assets': path.resolve(SRC_PATH, 'assets'),
       'reduxConf': path.resolve(SRC_PATH, 'redux'),
     },
   },

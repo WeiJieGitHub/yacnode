@@ -1,4 +1,4 @@
-import homeReducer from 'views/home/HomeRedux';
+import homeReducer from 'views/Home/redux';
 
 describe('views HomeRedux', () => {
   it('should return inital state', () => {

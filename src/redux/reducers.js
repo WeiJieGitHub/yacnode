@@ -1,4 +1,4 @@
-import HomeReducer from 'views/home/HomeRedux';
+import HomeReducer from 'views/Home/redux';
 
 export default {
   index: HomeReducer,

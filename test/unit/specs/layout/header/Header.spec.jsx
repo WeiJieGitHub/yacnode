@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Header from 'layouts/header/Header';
+import Header from 'layouts/Header';
 
 describe('layout Header', () => {
   it('should show title', () => {
     const enzymeWrapper = shallow(<Header />);
-    const h1 = enzymeWrapper.find('h1');
-    expect(h1.text()).toContain('CNode');
+    const Navigation = enzymeWrapper.find('Navigation');
+    expect(Navigation.exists()).toBe(true);
   });
 });
