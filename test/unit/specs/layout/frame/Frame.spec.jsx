@@ -5,16 +5,17 @@ import { Provider } from 'react-redux';
 import configureStore from 'reduxConf/configureStore';
 import Frame from 'layouts/Frame/Frame';
 
+const routerMap = {
+  '/': 'home',
+  '/good': 'good',
+  '/share': 'share',
+  '/ask': 'ask',
+  '/job': 'job',
+};
+
 describe('layout Frame', () => {
   it('should render corrent component through routes', () => {
-    const map = new Map([
-      ['/', 'home'],
-      ['/good', 'good'],
-      ['/share', 'share'],
-      ['/ask', 'ask'],
-      ['/job', 'job'],
-    ]);
-    map.forEach((value, key) => {
+    Object.keys(routerMap).forEach((key) => {
       const store = configureStore();
       const enzymeWrapper = mount(
         <Provider store={store}>
@@ -23,7 +24,7 @@ describe('layout Frame', () => {
           </MemoryRouter>
         </Provider>,
       );
-      const item = enzymeWrapper.find(`[data-role="${value}"]`);
+      const item = enzymeWrapper.find(`[data-role="${routerMap[key]}"]`);
       expect(item.exists()).toBe(true);
     });
   });

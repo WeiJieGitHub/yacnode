@@ -59,6 +59,7 @@ module.exports = {
       'layouts': path.resolve(SRC_PATH, 'layouts'),
       'assets': path.resolve(SRC_PATH, 'assets'),
       'reduxConf': path.resolve(SRC_PATH, 'redux'),
+      'routes': path.resolve(SRC_PATH, 'routes'),
     },
   },
   // 这是个 hack!

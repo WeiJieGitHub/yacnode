@@ -85,6 +85,7 @@ module.exports = {
       'assets': path.resolve(SRC_PATH, 'assets'),
       'layouts': path.resolve(SRC_PATH, 'layouts'),
       'reduxConf': path.resolve(SRC_PATH, 'redux'),
+      'routes': path.resolve(SRC_PATH, 'routes'),
     },
   },
 };

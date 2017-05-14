@@ -9,7 +9,7 @@ import styles from './Navigation.scss';
 
 class Navigation extends Component {
   handleMenuClick(e) {
-    e.preventDefault();
+    e.stopPropagation();
     this.props.handleMenuClick(e);
   }
 

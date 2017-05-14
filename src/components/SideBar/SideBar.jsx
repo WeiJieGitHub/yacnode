@@ -8,11 +8,11 @@ import styles from './SideBar.scss';
 class SideBar extends Component {
   handleCloseOperation(e) {
     this.props.handleCloseOperation(e);
-    e.preventDefault();
+    e.stopPropagation();
   }
 
   render() {
-    const { open } = this.props;
+    const { open, handleCloseOperation } = this.props;
     return (
       <nav className={styles.wrapper} styleName={open ? 'opening' : ''}>
         <div
@@ -22,7 +22,7 @@ class SideBar extends Component {
         >
           <i className={icons['icon-cross']} />
         </div>
-        <SideBarItems />
+        <SideBarItems handleItemClick={handleCloseOperation} />
       </nav>
     );
   }

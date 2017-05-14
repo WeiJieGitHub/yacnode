@@ -1,18 +1,27 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
+import routerMap from 'routes/routerMap';
 import styles from './NavigationItems.scss';
 
-function Links() {
+function NavigationItems() {
+  const items = Object.keys(routerMap).map(key => (
+    <NavLink
+      exact={key === '/'}
+      to={key}
+      styleName="item"
+      activeClassName={styles['item--active']}
+      key={key}
+    >
+      { routerMap[key] }
+    </NavLink>
+  ));
+
   return (
     <span styleName="wrapper">
-      <NavLink exact to="/" styleName="item" activeClassName={styles['item--active']}>全部</NavLink>
-      <NavLink to="/good" styleName="item" activeClassName={styles['item--active']}>精华</NavLink>
-      <NavLink to="/share" styleName="item" activeClassName={styles['item--active']}>分享</NavLink>
-      <NavLink to="/ask" styleName="item" activeClassName={styles['item--active']}>问答</NavLink>
-      <NavLink to="/job" styleName="item" activeClassName={styles['item--active']}>招聘</NavLink>
+      { items }
     </span>
   );
 }
 
-export default CSSModules(Links, styles);
+export default CSSModules(NavigationItems, styles);
