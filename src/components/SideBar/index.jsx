@@ -1,38 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import icons from 'styles/icons.scss';
 import SideBarItems from 'components/SideBarItems';
 import styles from './SideBar.scss';
 
-class SideBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: props.open,
-    };
-  }
-
-  close() {
-    this.setState({
-      open: false,
-    });
-  }
-
-  open() {
-    this.setState({
-      open: true,
-    });
-  }
-
+class SideBar extends Component {
   handleCloseOperation(e) {
-    this.close();
+    this.props.handleCloseOperation(e);
     e.preventDefault();
   }
 
   render() {
-    const { open } = this.state;
-
+    const { open } = this.props;
     return (
       <nav className={styles.wrapper} styleName={open ? 'opening' : ''}>
         <div
@@ -50,10 +30,12 @@ class SideBar extends React.Component {
 
 SideBar.propTypes = {
   open: PropTypes.bool,
+  handleCloseOperation: PropTypes.func,
 };
 
 SideBar.defaultProps = {
-  open: true,
+  open: false,
+  handleCloseOperation: () => null,
 };
 
 export default CSSModules(SideBar, styles);

@@ -1,6 +1,10 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { closeSideBar } from 'components/SideBar/SideBarRedux';
+
 import HomeView from 'views/Home';
 import GoodView from 'views/Good';
 import ShareView from 'views/Share';
@@ -11,10 +15,15 @@ import SideBar from 'components/SideBar';
 
 import 'styles/index.scss';
 
-function Frame() {
+function Frame(props) {
+  const { sideBarOpen } = props.sidebar;
+  const { closeSidebar } = props;
   return (
     <div>
-      <SideBar />
+      <SideBar
+        open={sideBarOpen}
+        handleCloseOperation={closeSidebar}
+      />
       <Header />
       <div>
         <Switch>
@@ -30,14 +39,20 @@ function Frame() {
 }
 
 Frame.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+  sidebar: PropTypes.shape({
+    openSidebar: PropTypes.string.bool,
+  }),
+  closeSidebar: PropTypes.func,
 };
 
 Frame.defaultProps = {
-  children: null,
+  sidebar: {
+    openSidebar: false,
+  },
+  closeSidebar: () => null,
 };
 
-export default Frame;
+export default withRouter(connect(
+  state => ({ sidebar: state.sidebar }),
+  dispatch => ({ closeSidebar: bindActionCreators(closeSideBar, dispatch) }),
+)(Frame));
