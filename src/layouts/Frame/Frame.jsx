@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { closeSideBar } from 'components/SideBar/SideBarRedux';
 
-import HomeView from 'views/Home';
-import GoodView from 'views/Good';
-import ShareView from 'views/Share';
-import AskView from 'views/Ask';
-import JobView from 'views/Job';
-import Header from 'layouts/Header';
-import SideBar from 'components/SideBar';
+import HomeView from 'views/Home/Home';
+import GoodView from 'views/Good/Good';
+import ShareView from 'views/Share/Share';
+import AskView from 'views/Ask/Ask';
+import JobView from 'views/Job/Job';
+import Header from 'layouts/Header/Header';
+import SideBar from 'components/SideBar/SideBar';
 
 import 'styles/index.scss';
 

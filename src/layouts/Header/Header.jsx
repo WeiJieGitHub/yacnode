@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
-import Navigation from 'components/Navigation';
+import Navigation from 'components/Navigation/Navigation';
 import { openSideBar } from 'components/SideBar/SideBarRedux';
 
 function Header(props) {

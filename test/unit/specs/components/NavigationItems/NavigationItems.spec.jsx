@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
-import NavigationItems from 'components/NavigationItems';
+import NavigationItems from 'components/NavigationItems/NavigationItems';
 import style from 'components/NavigationItems/NavigationItems.scss';
 
 describe('components NavigationItems', () => {

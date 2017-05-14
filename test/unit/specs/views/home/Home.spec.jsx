@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Home } from 'views/Home';
+import { Home } from 'views/Home/Home';
 
 describe('views Home', () => {
   it('should show content', () => {

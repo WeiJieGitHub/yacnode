@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Good from 'views/Good';
+import Good from 'views/Good/Good';
 
 describe('views Good', () => {
   it('should show content', () => {

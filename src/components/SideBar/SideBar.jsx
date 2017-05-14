@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import icons from 'styles/icons.scss';
-import SideBarItems from 'components/SideBarItems';
+import SideBarItems from 'components/SideBarItems/SideBarItems';
 import styles from './SideBar.scss';
 
 class SideBar extends Component {

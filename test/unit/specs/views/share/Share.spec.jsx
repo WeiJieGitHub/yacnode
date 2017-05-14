@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Share from 'views/Share';
+import Share from 'views/Share/Share';
 
 describe('views Share', () => {
   it('should show content', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
-import SideBarItems from 'components/SideBarItems';
+import SideBarItems from 'components/SideBarItems/SideBarItems';
 import style from 'components/SideBarItems/SideBarItems.scss';
 
 describe('components SideBarItems', () => {

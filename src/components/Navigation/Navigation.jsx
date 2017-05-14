@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import icons from 'styles/icons.scss';
-import Contarner from 'components/Container';
-import NavigationItems from 'components/NavigationItems';
-import Logo from 'components/Logo';
+import Contarner from 'components/Container/Container';
+import NavigationItems from 'components/NavigationItems/NavigationItems';
+import Logo from 'components/Logo/Logo';
 import styles from './Navigation.scss';
 
 class Navigation extends Component {
