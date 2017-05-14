@@ -3,6 +3,7 @@ const fileGlob = './specs/**/*spec.js*';
 
 module.exports = (config) => {
   config.set({
+    hostname: '127.0.0.1',
     frameworks: ['jasmine'],
     files: [fileGlob],
     webpack: webpackConfig,

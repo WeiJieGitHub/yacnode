@@ -41,12 +41,16 @@ module.exports = {
       }],
     }, {
       test: /\.svg$/,
-      loader: 'file-loader',    
+      loader: 'file-loader',
+    }, {
+      test: /\.(woff|eot|ttf)$/,
+      loaders: ['url-loader?prefix=font/&limit=10000&mimetype=application/font-woff']
     }],      
   },
   resolve: {
     extensions: ['.js', '.jsx', '.scss'],
     alias: {
+      'unitTest': path.resolve(ROOT_PATH, 'test', 'unit'),
       'views': path.resolve(SRC_PATH, 'views'),
       'components': path.resolve(SRC_PATH, 'components'),
       'utils': path.resolve(SRC_PATH, 'utils'),

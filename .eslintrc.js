@@ -13,5 +13,8 @@ module.exports = {
     },
   },
   rules: {
+    // 不适合许多场景，详见
+    // https://github.com/evcohen/eslint-plugin-jsx-a11y/issues/91
+    "jsx-a11y/no-static-element-interactions": 0,
   },
 }
