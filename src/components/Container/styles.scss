@@ -1,0 +1,7 @@
+@import '~styles/partial/variables';
+
+.container {
+  width: 100%;
+  max-width: map-get($screens, large);
+  margin: 0 auto;
+}

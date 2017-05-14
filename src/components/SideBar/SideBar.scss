@@ -1,0 +1,72 @@
+@import "~styles/partial/functions";
+@import "~styles/partial/mixins";
+
+.wrapper {
+  width: 61.8vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1000;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: get-color(white);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.75s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translate(calc(-110%), 0);
+
+  @include break {
+    display: none;
+  }
+}
+
+.opening {
+  transform: translate(0, 0);
+}
+
+.items {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.item {
+  display: block;
+  color: get-color(elephant);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  border-bottom: 1px solid get-color(alto);
+
+  &:hover {
+    color: lighten(get-color(elephant), 50%);
+  }
+}
+
+.cross {
+  padding-top: 4.5px;
+  padding-bottom: 4.5px;
+  background-color: lighten(get-color(elephant), 5%);
+  font-size: get-font-size(4);
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: none;
+
+  &:hover {
+    background-color: lighten(get-color(elephant), 10%);
+  }
+
+  i {
+    font-weight: 300;
+    padding: 5px;
+    color: get-color(white);
+  }
+}
+
+.item--active {
+  color: get-color(malibu);
+
+  &:hover {
+    color: get-color(malibu);
+  }
+}

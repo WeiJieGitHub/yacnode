@@ -1,0 +1,10 @@
+@import "~styles/partial/variables";
+@import '~modularscale-sass/libsass/scss/main';
+
+@function get-color($name) {
+  @return map-get($colors, $name);
+}
+
+@function get-font-size($size) {
+  @return ms($size, $font-size-base, $minor-third);
+}

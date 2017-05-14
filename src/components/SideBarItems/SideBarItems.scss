@@ -1,0 +1,29 @@
+@import "~styles/partial/functions";
+@import "~styles/partial/mixins";
+
+.wrapper {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.item {
+  display: block;
+  color: get-color(elephant);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  border-bottom: 1px solid get-color(alto);
+
+  &:hover {
+    color: lighten(get-color(elephant), 50%);
+  }
+}
+
+.item--active {
+  color: get-color(malibu);
+
+  &:hover {
+    color: get-color(malibu);
+  }
+}
+

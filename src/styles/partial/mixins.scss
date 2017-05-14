@@ -1,0 +1,11 @@
+@mixin break ($size: medium) {
+  @media (min-width: map-get($screens, $size)) {
+    @content;
+  }
+}
+
+@mixin control-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

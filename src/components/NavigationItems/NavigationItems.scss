@@ -1,0 +1,32 @@
+@import "~styles/partial/functions";
+@import "~styles/partial/mixins";
+
+.wrapper {
+  display: none;
+
+  @include break {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.item {
+  display: inline-block;
+  padding: 15px 20px;
+  color: get-color(dusty-grey);
+  transition: color 0.3s, background-color 0.3s;
+
+  &:hover {
+    color: lighten(get-color(dusty-grey), 20%);
+  }
+}
+
+.item--active {
+  color: lighten(get-color(dusty-grey), 20%);
+  background-color: lighten(get-color(elephant), 10%);
+
+  &:visited {
+    color: lighten(get-color(dusty-grey), 20%);
+  }
+}
+

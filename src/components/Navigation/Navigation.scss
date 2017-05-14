@@ -1,0 +1,28 @@
+@import "~styles/partial/functions";
+@import "~styles/partial/mixins";
+
+.wrapper {
+  background-color: get-color(elephant);
+  width: 100vw;
+}
+
+.body {
+  display: flex;
+
+  @include break {
+    justify-content: space-between;
+  }
+}
+
+.menu {
+  display: inline-block;
+  position: absolute;
+  padding: 15px;
+  color: get-color(white);
+  font-size: get-font-size(2);
+  cursor: pointer;
+
+  @include break {
+    display: none;
+  }
+}

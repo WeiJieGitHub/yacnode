@@ -1,0 +1,18 @@
+@import "~styles/partial/functions";
+@import "~styles/partial/mixins";
+
+.wrapper {
+  height: 52px;
+  flex: 0 1 auto;
+  margin: auto;
+
+  img {
+    width: auto;
+    height: 32px;
+    padding: 10px 0;
+  }
+
+  @include break {
+    margin: 0;
+  }
+}
