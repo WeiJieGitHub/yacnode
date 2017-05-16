@@ -1,26 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import Container from 'components/Container/Container';
+import { fetchHomeTopics } from './HomeRedux';
 
-export function Home(props) {
-  const { title } = props.store;
-  return (
-    <div>
-      <h1 data-role="home">{ title }</h1>
-    </div>
-  );
+export class Home extends Component {
+  componentDidMount() {
+    this.props.fetchTopics();
+  }
+
+  render() {
+    const { title, loadState } = this.props;
+    return (
+      <Container>
+        <h1 data-role="home">{ title }</h1>
+        <h2>{ loadState }</h2>
+      </Container>
+    );
+  }
 }
 
 Home.propTypes = {
-  store: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-  }),
+  title: PropTypes.string.isRequired,
+  loadState: PropTypes.string.isRequired,
+  fetchTopics: PropTypes.func,
 };
 
 Home.defaultProps = {
-  store: {
-    title: '',
-  },
+  title: '',
+  loadState: 'READY',
+  fetchTopics: () => null,
 };
 
-export default connect(state => ({ store: state.index }))(Home);
+export default connect(
+  state => state.home,
+  dispatch => ({ fetchTopics: bindActionCreators(fetchHomeTopics, dispatch) }),
+)(Home);

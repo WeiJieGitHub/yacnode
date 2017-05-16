@@ -13,7 +13,7 @@ function NavigationItems() {
       activeClassName={styles['item--active']}
       key={key}
     >
-      { routerMap[key] }
+      { routerMap[key].title }
     </NavLink>
   ));
 

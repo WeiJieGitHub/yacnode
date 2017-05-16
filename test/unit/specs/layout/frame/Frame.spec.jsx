@@ -3,15 +3,8 @@ import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from 'reduxConf/configureStore';
+import routerMap from 'routes/routerMap';
 import Frame from 'layouts/Frame/Frame';
-
-const routerMap = {
-  '/': 'home',
-  '/good': 'good',
-  '/share': 'share',
-  '/ask': 'ask',
-  '/job': 'job',
-};
 
 describe('layout Frame', () => {
   it('should render corrent component through routes', () => {
@@ -24,7 +17,7 @@ describe('layout Frame', () => {
           </MemoryRouter>
         </Provider>,
       );
-      const item = enzymeWrapper.find(`[data-role="${routerMap[key]}"]`);
+      const item = enzymeWrapper.find(`[data-role="${routerMap[key].name}"]`);
       expect(item.exists()).toBe(true);
     });
   });

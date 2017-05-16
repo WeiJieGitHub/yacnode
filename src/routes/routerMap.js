@@ -1,7 +1,22 @@
 export default {
-  '/': '全部',
-  '/good': '精华',
-  '/share': '分享',
-  '/ask': '问答',
-  '/job': '招聘',
+  '/': {
+    title: '全部',
+    name: 'home',
+  },
+  '/good': {
+    title: '精华',
+    name: 'good',
+  },
+  '/share': {
+    title: '分享',
+    name: 'share',
+  },
+  '/ask': {
+    title: '问答',
+    name: 'ask',
+  },
+  '/job': {
+    title: '招聘',
+    name: 'job',
+  },
 };

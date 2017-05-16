@@ -1,9 +1,10 @@
 import React from 'react';
+import Container from 'components/Container/Container';
 
 export default function Home() {
   return (
-    <div>
+    <Container>
       <h1 data-role="ask">Ask</h1>
-    </div>
+    </Container>
   );
 }

@@ -22,7 +22,7 @@ class SideBarItems extends Component {
         onClick={(e) => { this.handleItemClick(e); }}
         onTouchEnd={(e) => { this.handleItemClick(e); }}
       >
-        { routerMap[key] }
+        { routerMap[key].title }
       </NavLink>
     ));
 

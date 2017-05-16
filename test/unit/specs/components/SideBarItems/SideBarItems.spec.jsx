@@ -16,7 +16,7 @@ describe('components SideBarItems', () => {
       );
       const item = enzymeWrapper.find(`a[href="${key}"]`);
       expect(item.hasClass(style['item--active'])).toBe(true);
-      expect(item.text()).toContain(routerMap[key]);
+      expect(item.text()).toContain(routerMap[key].title);
     });
   });
 

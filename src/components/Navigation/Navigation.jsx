@@ -36,7 +36,7 @@ Navigation.propTypes = {
 };
 
 Navigation.defaultProps = {
-  handleMenuClick: () => undefined,
+  handleMenuClick: () => null,
 };
 
 export default CSSModules(Navigation, styles);
