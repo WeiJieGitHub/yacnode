@@ -1,0 +1,73 @@
+@import "~styles/partial/functions";
+@import "~styles/partial/mixins";
+
+.wrapper {
+  display: flex;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  background-color: get-color(white);
+
+  @include break {
+    box-shadow: 0 1px 2px get-color(dusty-grey);
+  }
+}
+
+.avatar {
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+}
+
+.content {
+  flex: 1 1 auto;
+}
+
+.top {
+  font-size: get-font-size(-1);
+  color: get-color(dusty-grey);
+  display: flex;
+  justify-content: space-between;
+}
+
+.label {
+  display: inline-block;
+  color: get-color(white);
+  background-color: get-color(malibu);
+  padding: 1px 10px;
+  border-radius: 2px;
+}
+
+.title {
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  a {
+    color: get-color(elephant);
+  }
+}
+
+.bottom {
+  font-size: get-font-size(-1);
+  color: get-color(dusty-grey);
+  display: flex;
+  justify-content: space-between;
+
+  .info {
+    span {
+      display: inline-block;
+      margin-right: 50px;
+    }
+  }
+
+  .reply {
+    align-self: flex-end;
+  }
+}

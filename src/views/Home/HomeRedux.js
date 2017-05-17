@@ -12,7 +12,7 @@ const FETCH_HOME_TOPICS_FAIL = 'FETCH_HOME_TOPICS_FAIL';
 
 export const fetchHomeTopics = () => (dispatch) => {
   dispatch({ type: FETCH_HOME_TOPICS });
-  fetch('https://cnodejs.org/api/v1/topics').then((response) => {
+  fetch('https://cnodejs.org/api/v1/topics').then(response => response.json()).then((response) => {
     dispatch({ type: FETCH_HOME_TOPICS_SUCCESS, payload: response.data });
   }).catch((error) => {
     dispatch({ type: FETCH_HOME_TOPICS_FAIL, error });

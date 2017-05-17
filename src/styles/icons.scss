@@ -8,8 +8,10 @@ $icon-chevron-thin-down: "\e905";
 $icon-chevron-thin-left: "\e906";
 $icon-chevron-thin-right: "\e907";
 $icon-chevron-thin-up: "\e908";
+$icon-chat: "\e910";
 $icon-check: "\e909";
 $icon-cross: "\e90a";
+$icon-eye: "\e911";
 $icon-menu: "\e901";
 $icon-new-message: "\e90b";
 $icon-star-outlined: "\e90c";
@@ -92,6 +94,12 @@ i {
   }
 }
 
+.icon-chat {
+  &::before {
+    content: $icon-chat;
+  }
+}
+
 .icon-check {
   &::before {
     content: $icon-check;
@@ -101,6 +109,12 @@ i {
 .icon-cross {
   &::before {
     content: $icon-cross;
+  }
+}
+
+.icon-eye {
+  &::before {
+    content: $icon-eye;
   }
 }
 

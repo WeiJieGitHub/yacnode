@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Container from 'components/Container/Container';
+import TopicList from 'components/TopicList/TopicList';
 import { fetchHomeTopics } from './HomeRedux';
 
 export class Home extends Component {
@@ -11,26 +12,35 @@ export class Home extends Component {
   }
 
   render() {
-    const { title, loadState } = this.props;
-    return (
-      <Container>
-        <h1 data-role="home">{ title }</h1>
-        <h2>{ loadState }</h2>
-      </Container>
-    );
+    const { loadState, topics } = this.props;
+    let result;
+    if (loadState === 'READY') {
+      result = (
+        <Container>
+          <TopicList topics={topics} />
+        </Container>
+      );
+    } else {
+      result = (
+        <Container>
+          <h2>{ loadState }</h2>
+        </Container>
+      );
+    }
+    return result;
   }
 }
 
 Home.propTypes = {
-  title: PropTypes.string.isRequired,
   loadState: PropTypes.string.isRequired,
   fetchTopics: PropTypes.func,
+  topics: PropTypes.arrayOf(PropTypes.object),
 };
 
 Home.defaultProps = {
-  title: '',
   loadState: 'READY',
   fetchTopics: () => null,
+  topics: [],
 };
 
 export default connect(
