@@ -39,3 +39,27 @@ const privateTimeFlies = () => {
   };
 };
 export const timeFlies = privateTimeFlies();
+
+export const range = (startArg, endArg) => {
+  const result = [];
+  let start = startArg;
+  let end = endArg;
+  if (end == null) {
+    end = start;
+    start = 0;
+  }
+  for (;start < end; start += 1) {
+    result.push(start);
+  }
+  return result;
+};
+
+export const type = (arg) => {
+  const typeList = ['Boolean', 'Number', 'String', 'Function', 'Array', 'Date', 'RegExp', 'Object', 'Error'];
+  const class2type = {};
+  const toString = class2type.toString;
+  typeList.forEach((item) => {
+    class2type[`[object ${item}]`] = item.toLowerCase();
+  });
+  return class2type[toString.call(arg)];
+};

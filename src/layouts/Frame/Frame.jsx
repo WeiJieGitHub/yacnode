@@ -27,11 +27,11 @@ function Frame(props) {
       <Header />
       <div>
         <Switch>
-          <Route exact path="/" component={HomeView} />
           <Route path="/good" component={GoodView} />
           <Route path="/share" component={ShareView} />
           <Route path="/ask" component={AskView} />
           <Route path="/job" component={JobView} />
+          <Route exact path="/" component={HomeView} />
         </Switch>
       </div>
     </div>
