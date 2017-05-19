@@ -4,6 +4,7 @@
 body {
   font: $font-weight get-font-size(0) $font-family;
   color: get-color(elephant);
+  background-color: lighten(get-color(elephant), 5%);
 }
 
 a {

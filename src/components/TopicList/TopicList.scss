@@ -2,8 +2,9 @@
 @import "~styles/partial/mixins";
 
 .wrapper {
-  padding: 10px;
-  background-color: lighten(get-color(elephant), 5%);
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 
   @include break {
     padding: 10px 0;

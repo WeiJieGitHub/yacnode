@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import Topic from 'components/Topic/Topic';
-import Pagination from 'components/Pagination/Pagination';
 import { makeUnique } from 'utils/utils';
 import styles from './TopicList.scss';
 
@@ -12,7 +11,6 @@ function TopicList(props) {
   return (
     <div styleName="wrapper">
       { items }
-      <Pagination />
     </div>
   );
 }
