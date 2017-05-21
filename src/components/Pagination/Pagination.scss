@@ -3,6 +3,7 @@
 
 .wrapper {
   color: get-color(dusty-grey);
+  background-color: lighten(get-color(elephant), 5%);
 
   ul {
     display: flex;

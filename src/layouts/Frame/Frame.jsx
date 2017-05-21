@@ -10,6 +10,7 @@ import GoodView from 'views/Good/Good';
 import ShareView from 'views/Share/Share';
 import AskView from 'views/Ask/Ask';
 import JobView from 'views/Job/Job';
+import ArticleView from 'views/Article/Article';
 import Header from 'layouts/Header/Header';
 import SideBar from 'components/SideBar/SideBar';
 
@@ -27,11 +28,51 @@ function Frame(props) {
       <Header />
       <div>
         <Switch>
-          <Route path="/good" component={GoodView} />
-          <Route path="/share" component={ShareView} />
-          <Route path="/ask" component={AskView} />
-          <Route path="/job" component={JobView} />
-          <Route exact path="/" component={HomeView} />
+          <Route
+            path="/good"
+            render={({ match }) => (
+              <Switch>
+                <Route path="/good/:id" component={ArticleView} />
+                <Route path={match.path} component={GoodView} />
+              </Switch>
+            )}
+          />
+          <Route
+            path="/share"
+            render={({ match }) => (
+              <Switch>
+                <Route path="/share/:id" component={ArticleView} />
+                <Route path={match.path} component={ShareView} />
+              </Switch>
+            )}
+          />
+          <Route
+            path="/ask"
+            render={({ match }) => (
+              <Switch>
+                <Route path="/ask/:id" component={ArticleView} />
+                <Route path={match.path} component={AskView} />
+              </Switch>
+            )}
+          />
+          <Route
+            path="/job"
+            render={({ match }) => (
+              <Switch>
+                <Route path={`${match.path}/:id`} component={ArticleView} />
+                <Route path={match.path} component={JobView} />
+              </Switch>
+            )}
+          />
+          <Route
+            path="/"
+            render={({ match }) => (
+              <Switch>
+                <Route path="/:id" component={ArticleView} />
+                <Route path={match.path} component={HomeView} />
+              </Switch>
+            )}
+          />
         </Switch>
       </div>
     </div>

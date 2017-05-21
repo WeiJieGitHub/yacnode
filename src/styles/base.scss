@@ -1,14 +1,255 @@
 @import "~styles/partial/variables";
 @import "~styles/partial/functions";
+@import "~styles/partial/mixins";
 
 body {
   font: $font-weight get-font-size(0) $font-family;
   color: get-color(elephant);
-  background-color: lighten(get-color(elephant), 5%);
+}
+
+blockquote,
+code,
+figure,
+img,
+pre,
+table,
+tr {
+  page-break-inside: avoid;
+}
+
+h2,
+h3,
+h4,
+h5,
+p {
+  orphans: 3;
+  widows: 3;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  page-break-after: avoid;
+}
+
+b,
+strong {
+  font-weight: 500;
+}
+
+em {
+  font-style: italic;
+}
+
+blockquote,
+dl,
+ol,
+p,
+table,
+ul {
+  margin-top: 0;
+  margin-bottom: 0.85em;
 }
 
 a {
   transition: color 0.3s;
   text-decoration: none;
   color: lighten(get-color(denim), 5%);
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+a:active,
+a:focus,
+a:hover {
+  outline: 0;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+}
+
+hr {
+  height: 4px;
+  padding: 0;
+  margin: 1.7em 0;
+  overflow: hidden;
+  background-color: get-color(elephant);
+  border: none;
+}
+
+hr::after,
+hr::before {
+  display: table;
+  content: " ";
+}
+
+hr::after {
+  clear: both;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1.275em;
+  margin-bottom: 0.85em;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.75em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h4 {
+  font-size: 1.25em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+code,
+pre {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  direction: ltr;
+  margin: 0;
+  padding: 0;
+  border: none;
+  color: inherit;
+}
+
+pre {
+  overflow: auto;
+  word-wrap: normal;
+  margin: 0;
+  padding: 0.85em 1em;
+  margin-bottom: 1.275em;
+  background: get-color(concrete);
+}
+
+pre > code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  font-size: 0.85em;
+  white-space: pre;
+  background: 0 0;
+}
+
+pre > code::after,
+pre > code::before {
+  content: normal;
+}
+
+code {
+  padding: 0.2em;
+  margin: 0;
+  font-size: 0.85em;
+  background-color: get-color(concrete);
+}
+
+code::after,
+code::before {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+table {
+  display: block;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow: auto;
+}
+
+table td,
+table th {
+  padding: 6px 13px;
+  border: 1px solid get-color(alto);
+}
+
+table tr {
+  background-color: get-color(white);
+  border-top: 1px solid lighten(get-color(alto), 10%);
+}
+
+table tr:nth-child(2n) {
+  background-color: lighten(get-color(concrete), 10%);
+}
+
+table th {
+  font-weight: 500;
+}
+
+ol,
+ul {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 0.85em;
+  padding-left: 2em;
+}
+
+ol ol,
+ol ul,
+ul ol,
+ul ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ol ol {
+  list-style-type: lower-roman;
+}
+
+blockquote {
+  margin: 0;
+  margin-bottom: 0.85em;
+  padding: 0 15px;
+  color: get-color(dusty-grey);
+  border-left: 4px solid get-color(malibu);
+}
+
+blockquote:first-child {
+  margin-top: 0;
+}
+
+blockquote:last-child {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  padding: 0;
+  margin-top: 0.85em;
+  font-style: italic;
+  font-weight: 500;
+}
+
+dl dd {
+  padding: 0 0.85em;
+  margin-bottom: 0.85em;
+}
+
+dd {
+  margin-left: 0;
 }

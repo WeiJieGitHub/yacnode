@@ -9,3 +9,5 @@ export const getGoodTopics = params => fetch(`${API_PREFIX}/topics/?${stringify(
 export const getAskTopics = params => fetch(`${API_PREFIX}/topics/?${stringify(Object.assign({ tab: 'ask', limit: PAGE_LIMIT }, params))}`);
 export const getJobTopics = params => fetch(`${API_PREFIX}/topics/?${stringify(Object.assign({ tab: 'job', limit: PAGE_LIMIT }, params))}`);
 export const getShareTopics = params => fetch(`${API_PREFIX}/topics/?${stringify(Object.assign({ tab: 'share', limit: PAGE_LIMIT }, params))}`);
+
+export const getArticleContent = params => fetch(`${API_PREFIX}/topic/${params.id}?${stringify(Object.assign({}, params))}`);

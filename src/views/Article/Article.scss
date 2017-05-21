@@ -1,0 +1,14 @@
+@import "~styles/partial/functions";
+@import "~styles/partial/mixins";
+
+.wrapper {
+  background-color: get-color(white);
+  line-height: 1.8;
+  padding: 15px;
+
+  img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+  }
+}

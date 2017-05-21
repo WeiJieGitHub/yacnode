@@ -4,6 +4,7 @@ import GoodReducer from 'views/Good/GoodRedux';
 import AskReducer from 'views/Ask/AskRedux';
 import JobReducer from 'views/Job/JobRedux';
 import ShareReducer from 'views/Share/ShareRedux';
+import ArticleReducer from 'views/Article/ArticleRedux';
 
 export default {
   ask: AskReducer,
@@ -12,4 +13,5 @@ export default {
   job: JobReducer,
   share: ShareReducer,
   sidebar: HeaderReducer,
+  article: ArticleReducer,
 };
