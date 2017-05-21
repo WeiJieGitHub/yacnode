@@ -9,9 +9,9 @@ const FETCH_JOB_TOPICS = 'FETCH_JOB_TOPICS';
 const FETCH_JOB_TOPICS_SUCCESS = 'FETCH_JOB_TOPICS_SUCCESS';
 const FETCH_JOB_TOPICS_FAIL = 'FETCH_JOB_TOPICS_FAIL';
 
-export const fetchJobTopics = () => (dispatch) => {
+export const fetchJobTopics = params => (dispatch) => {
   dispatch({ type: FETCH_JOB_TOPICS });
-  getJobTopics().then(response => response.json()).then((response) => {
+  getJobTopics(params).then(response => response.json()).then((response) => {
     dispatch({ type: FETCH_JOB_TOPICS_SUCCESS, payload: response.data });
   }).catch((error) => {
     dispatch({ type: FETCH_JOB_TOPICS_FAIL, error });

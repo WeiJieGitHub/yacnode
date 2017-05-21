@@ -9,9 +9,9 @@ const FETCH_ASK_TOPICS = 'FETCH_ASK_TOPICS';
 const FETCH_ASK_TOPICS_SUCCESS = 'FETCH_ASK_TOPICS_SUCCESS';
 const FETCH_ASK_TOPICS_FAIL = 'FETCH_ASK_TOPICS_FAIL';
 
-export const fetchAskTopics = () => (dispatch) => {
+export const fetchAskTopics = params => (dispatch) => {
   dispatch({ type: FETCH_ASK_TOPICS });
-  getAskTopics().then(response => response.json()).then((response) => {
+  getAskTopics(params).then(response => response.json()).then((response) => {
     dispatch({ type: FETCH_ASK_TOPICS_SUCCESS, payload: response.data });
   }).catch((error) => {
     dispatch({ type: FETCH_ASK_TOPICS_FAIL, error });

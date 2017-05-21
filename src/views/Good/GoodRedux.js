@@ -9,9 +9,9 @@ const FETCH_GOOD_TOPICS = 'FETCH_GOOD_TOPICS';
 const FETCH_GOOD_TOPICS_SUCCESS = 'FETCH_GOOD_TOPICS_SUCCESS';
 const FETCH_GOOD_TOPICS_FAIL = 'FETCH_GOOD_TOPICS_FAIL';
 
-export const fetchGoodTopics = () => (dispatch) => {
+export const fetchGoodTopics = params => (dispatch) => {
   dispatch({ type: FETCH_GOOD_TOPICS });
-  getGoodTopics().then(response => response.json()).then((response) => {
+  getGoodTopics(params).then(response => response.json()).then((response) => {
     dispatch({ type: FETCH_GOOD_TOPICS_SUCCESS, payload: response.data });
   }).catch((error) => {
     dispatch({ type: FETCH_GOOD_TOPICS_FAIL, error });

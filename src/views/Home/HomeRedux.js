@@ -3,7 +3,6 @@ import { getHomeTopics } from 'utils/request';
 const initialState = {
   topics: [],
   loadState: 'READY',
-  page: 1,
 };
 
 const FETCH_HOME_TOPICS = 'FETCH_HOME_TOPICS';

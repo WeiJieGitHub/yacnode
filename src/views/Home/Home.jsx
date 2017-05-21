@@ -33,12 +33,13 @@ export class Home extends Component {
     const { loadState, topics, location } = this.props;
     const { page } = parse(location.search.slice(1));
     const paginationInfo = getPaginationInfo(page, topics.length);
+
     let result;
     if (loadState === 'READY') {
       result = (
         <Container>
           <TopicList topics={topics} />
-          <Pagination {...paginationInfo} prefix="/?page=" />
+          <Pagination {...paginationInfo} prefix={`${location.pathname}?page=`} />
         </Container>
       );
     } else {

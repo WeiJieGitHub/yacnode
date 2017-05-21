@@ -9,9 +9,9 @@ const FETCH_SHARE_TOPICS = 'FETCH_SHARE_TOPICS';
 const FETCH_SHARE_TOPICS_SUCCESS = 'FETCH_SHARE_TOPICS_SUCCESS';
 const FETCH_SHARE_TOPICS_FAIL = 'FETCH_SHARE_TOPICS_FAIL';
 
-export const fetchShareTopics = () => (dispatch) => {
+export const fetchShareTopics = params => (dispatch) => {
   dispatch({ type: FETCH_SHARE_TOPICS });
-  getShareTopics().then(response => response.json()).then((response) => {
+  getShareTopics(params).then(response => response.json()).then((response) => {
     dispatch({ type: FETCH_SHARE_TOPICS_SUCCESS, payload: response.data });
   }).catch((error) => {
     dispatch({ type: FETCH_SHARE_TOPICS_FAIL, error });
