@@ -3,6 +3,8 @@
 @import "~styles/partial/mixins";
 
 body {
+  word-break: break-all;
+  word-wrap: break-word;
   font: $font-weight get-font-size(0) $font-family;
   color: get-color(elephant);
 }
@@ -53,12 +55,17 @@ ul {
   margin-bottom: 0.85em;
 }
 
+p {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+}
+
 a {
   transition: color 0.3s;
   text-decoration: none;
   color: lighten(get-color(denim), 5%);
-  word-break: break-all;
-  word-wrap: break-word;
 }
 
 a:active,

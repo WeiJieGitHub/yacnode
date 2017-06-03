@@ -1,7 +1,26 @@
 import { getArticleContent } from 'utils/request';
 
-const initialState = {
-  article: {},
+export const initialState = {
+  article: {
+    id: '',
+    author_id: '',
+    tab: '',
+    content: '',
+    author: {
+      avatar_url: '',
+      loginname: '',
+    },
+    replies: [
+      {
+        author: {
+          avatar_url: '',
+          loginname: '',
+        },
+        content: '',
+        id: '',
+      },
+    ],
+  },
   loadState: 'READY',
 };
 

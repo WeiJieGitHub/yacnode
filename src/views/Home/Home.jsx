@@ -11,11 +11,14 @@ import { fetchHomeTopics } from './HomeRedux';
 
 export class Home extends Component {
   componentDidMount() {
+    const { history } = this.props;
     const { search } = this.props.location;
-    this.fetchData(search);
+    if (history.action === 'PUSH' || this.props.topics.length === 0) {
+      this.fetchData(search);
+    }
   }
 
-  componentWillUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     const currentSearch = this.props.location.search;
     const nextSearch = nextProps.location.search;
     if (currentSearch !== nextSearch) {
@@ -62,6 +65,9 @@ Home.propTypes = {
     search: PropTypes.string,
     hash: PropTypes.string,
   }),
+  history: PropTypes.shape({
+    action: PropTypes.string,
+  }),
 };
 
 Home.defaultProps = {
@@ -72,6 +78,9 @@ Home.defaultProps = {
     pathname: '',
     search: '',
     hash: '',
+  },
+  history: {
+    action: '',
   },
 };
 

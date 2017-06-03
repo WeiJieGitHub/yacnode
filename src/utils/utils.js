@@ -63,3 +63,13 @@ export const type = (arg) => {
   });
   return class2type[toString.call(arg)];
 };
+
+export const omit = (obj, ...props) => {
+  const result = {};
+  Object.keys(obj).forEach((key) => {
+    if (props.indexOf(key) === -1) {
+      result[key] = obj[key];
+    }
+  });
+  return result;
+};
