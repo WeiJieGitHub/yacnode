@@ -7,7 +7,6 @@ import styles from './NavigationItems.scss';
 function NavigationItems() {
   const items = Object.keys(routerMap).map(key => (
     <NavLink
-      exact={key === '/'}
       to={key}
       styleName="item"
       activeClassName={styles['item--active']}

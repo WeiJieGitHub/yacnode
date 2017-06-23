@@ -39,7 +39,7 @@ export class Share extends Component {
     if (loadState === 'READY') {
       result = (
         <Container>
-          <TopicList topics={topics} />
+          <TopicList topics={topics} prefix={location.pathname} />
           <Pagination {...paginationInfo} prefix={`${location.pathname}?page=`} />
         </Container>
       );

@@ -42,7 +42,7 @@ export class Home extends Component {
     if (loadState === 'READY') {
       result = (
         <Container>
-          <TopicList topics={topics} prefix="" />
+          <TopicList topics={topics} prefix={`${location.pathname}`} />
           <Pagination {...paginationInfo} prefix={`${location.pathname}?page=`} />
         </Container>
       );

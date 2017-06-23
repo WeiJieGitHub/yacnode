@@ -1,5 +1,5 @@
 export default {
-  '/': {
+  '/home': {
     title: '全部',
     name: 'home',
   },

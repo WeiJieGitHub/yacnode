@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -65,12 +65,18 @@ function Frame(props) {
             )}
           />
           <Route
-            path="/"
+            path="/home"
             render={({ match }) => (
               <Switch>
-                <Route path="/:id" component={ArticleView} />
+                <Route path="/home/:id" component={ArticleView} />
                 <Route path={match.path} component={HomeView} />
               </Switch>
+            )}
+          />
+          <Route
+            path="/"
+            render={() => (
+              <Redirect to="/home" />
             )}
           />
         </Switch>
