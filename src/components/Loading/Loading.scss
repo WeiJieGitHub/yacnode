@@ -1,0 +1,15 @@
+@import "~styles/partial/functions";
+@import "~styles/partial/mixins";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100vh - 52px);
+  transform: scaleX(-1);
+  background-color: get-color(elephant);
+
+  @include break {
+    background-color: get-color(white);
+  }
+}

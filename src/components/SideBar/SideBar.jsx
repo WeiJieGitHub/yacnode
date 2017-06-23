@@ -6,6 +6,15 @@ import SideBarItems from 'components/SideBarItems/SideBarItems';
 import styles from './SideBar.scss';
 
 class SideBar extends Component {
+  componentWillUpdate() {
+    const { open } = this.props;
+    if (open) {
+      document.body.classList.add(styles['body--open']);
+    } else {
+      document.body.classList.remove(styles['body--open']);
+    }
+  }
+
   handleCloseOperation(e) {
     this.props.handleCloseOperation(e);
     e.stopPropagation();

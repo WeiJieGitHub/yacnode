@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Container from 'components/Container/Container';
+import Loading from 'components/Loading/Loading';
 import CSSModules from 'react-css-modules';
 import icons from 'styles/icons.scss';
 import { timeFlies } from 'utils/utils';
@@ -86,11 +87,7 @@ export class Article extends Component {
         </Container>
       );
     } else {
-      result = (
-        <Container>
-          <h2>{ loadState }</h2>
-        </Container>
-      );
+      result = <Loading />;
     }
     return result;
   }

@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import Container from 'components/Container/Container';
 import TopicList from 'components/TopicList/TopicList';
 import Pagination from 'components/Pagination/Pagination';
+import Loading from 'components/Loading/Loading';
 import { parse } from 'querystring';
 import getPaginationInfo from 'utils/getPaginationInfo';
 import { fetchShareTopics } from './ShareRedux';
@@ -43,11 +44,7 @@ export class Share extends Component {
         </Container>
       );
     } else {
-      result = (
-        <Container>
-          <h2>{ loadState }</h2>
-        </Container>
-      );
+      result = <Loading />;
     }
     return result;
   }
