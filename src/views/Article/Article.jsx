@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import highlight from 'highlight.js';
+import 'highlight.js/styles/github.css';
 import Container from 'components/Container/Container';
 import Loading from 'components/Loading/Loading';
 import CSSModules from 'react-css-modules';
@@ -13,6 +15,10 @@ import styles from './Article.scss';
 function createMarkup(markup) {
   return { __html: markup };
 }
+
+highlight.configure({
+  tabReplace: '  ', // 2 spaces
+});
 
 export class Article extends Component {
   componentDidMount() {
@@ -26,6 +32,12 @@ export class Article extends Component {
     if (currentId !== nextId) {
       this.fetchData(nextId);
     }
+  }
+
+  componentDidUpdate() {
+    Array.prototype.slice.call(document.querySelectorAll('pre code')).forEach((block) => {
+      highlight.highlightBlock(block);
+    });
   }
 
   fetchData(id) {
@@ -82,7 +94,7 @@ export class Article extends Component {
           <article styleName="wrapper" dangerouslySetInnerHTML={createMarkup(article.content)} />
           <div styleName="comment-wrapper">
             <h3>评论</h3>
-            {comments}
+            {comments.length > 0 ? comments : <span>暂无评论</span>}
           </div>
         </Container>
       );

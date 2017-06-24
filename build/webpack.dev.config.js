@@ -71,6 +71,9 @@ module.exports = {
     }, {
       test: /\.(woff|eot|ttf)$/,
       loaders: ['url-loader?prefix=font/&limit=10000&mimetype=application/font-woff']
+    }, {
+      test: /\.css/,
+      loaders: ['style-loader', 'css-loader'],
     }],
   },
   resolve: {
