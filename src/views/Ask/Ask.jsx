@@ -12,14 +12,18 @@ import { fetchAskTopics } from './AskRedux';
 
 export class Ask extends Component {
   componentDidMount() {
+    const { history } = this.props;
     const { search } = this.props.location;
-    this.fetchData(search);
+    if (history.action === 'PUSH' || this.props.topics.length === 0) {
+      this.fetchData(search);
+    }
   }
 
   componentWillUpdate(nextProps) {
     const currentSearch = this.props.location.search;
     const nextSearch = nextProps.location.search;
-    if (currentSearch !== nextSearch) {
+    const { history } = this.props;
+    if (currentSearch !== nextSearch && history.action === 'PUSH') {
       this.fetchData(nextSearch);
     }
   }
@@ -59,6 +63,9 @@ Ask.propTypes = {
     search: PropTypes.string,
     hash: PropTypes.string,
   }),
+  history: PropTypes.shape({
+    action: PropTypes.string,
+  }),
 };
 
 Ask.defaultProps = {
@@ -69,6 +76,9 @@ Ask.defaultProps = {
     pathname: '',
     search: '',
     hash: '',
+  },
+  history: {
+    action: '',
   },
 };
 

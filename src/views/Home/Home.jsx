@@ -19,10 +19,11 @@ export class Home extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillUpdate(nextProps) {
     const currentSearch = this.props.location.search;
     const nextSearch = nextProps.location.search;
-    if (currentSearch !== nextSearch) {
+    const { history } = this.props;
+    if (currentSearch !== nextSearch && history.action === 'PUSH') {
       this.fetchData(nextSearch);
     }
   }

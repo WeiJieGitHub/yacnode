@@ -108,6 +108,7 @@
 
 .comment__content {
   flex: 1 1 auto;
+  width: calc(100% - 120px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
