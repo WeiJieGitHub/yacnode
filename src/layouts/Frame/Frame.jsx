@@ -5,15 +5,18 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { closeSideBar } from 'components/SideBar/SideBarRedux';
 import { push, pop } from 'reduxConf/historyReducer';
-
-import HomeView from 'views/Home/Home';
-import GoodView from 'views/Good/Good';
-import ShareView from 'views/Share/Share';
-import AskView from 'views/Ask/Ask';
-import JobView from 'views/Job/Job';
+import TopicsView from 'views/Topics/Topics';
 import ArticleView from 'views/Article/Article';
 import Header from 'layouts/Header/Header';
 import SideBar from 'components/SideBar/SideBar';
+import { fetchTopics } from 'views/Topics/TopicsRedux';
+import {
+  getHomeTopics,
+  getGoodTopics,
+  getAskTopics,
+  getJobTopics,
+  getShareTopics,
+} from 'utils/request';
 
 import 'styles/index.scss';
 
@@ -42,7 +45,8 @@ class Frame extends Component {
 
   render() {
     const { sideBarOpen } = this.props.sidebar;
-    const { closeSidebar } = this.props;
+    const { closeSidebar, fetchData } = this.props;
+
     return (
       <div>
         <SideBar
@@ -57,7 +61,16 @@ class Frame extends Component {
               render={({ match }) => (
                 <Switch>
                   <Route path="/good/:id" component={ArticleView} />
-                  <Route path={match.path} component={GoodView} />
+                  <Route
+                    path={match.path}
+                    render={props =>
+                      <TopicsView
+                        fetchTopics={fetchData}
+                        request={getGoodTopics}
+                        {...props}
+                      />
+                    }
+                  />
                 </Switch>
               )}
             />
@@ -66,7 +79,16 @@ class Frame extends Component {
               render={({ match }) => (
                 <Switch>
                   <Route path="/share/:id" component={ArticleView} />
-                  <Route path={match.path} component={ShareView} />
+                  <Route
+                    path={match.path}
+                    render={props =>
+                      <TopicsView
+                        fetchTopics={fetchData}
+                        request={getShareTopics}
+                        {...props}
+                      />
+                    }
+                  />
                 </Switch>
               )}
             />
@@ -75,7 +97,16 @@ class Frame extends Component {
               render={({ match }) => (
                 <Switch>
                   <Route path="/ask/:id" component={ArticleView} />
-                  <Route path={match.path} component={AskView} />
+                  <Route
+                    path={match.path}
+                    render={props =>
+                      <TopicsView
+                        fetchTopics={fetchData}
+                        request={getAskTopics}
+                        {...props}
+                      />
+                    }
+                  />
                 </Switch>
               )}
             />
@@ -84,7 +115,16 @@ class Frame extends Component {
               render={({ match }) => (
                 <Switch>
                   <Route path={`${match.path}/:id`} component={ArticleView} />
-                  <Route path={match.path} component={JobView} />
+                  <Route
+                    path={match.path}
+                    render={props =>
+                      <TopicsView
+                        fetchTopics={fetchData}
+                        request={getJobTopics}
+                        {...props}
+                      />
+                    }
+                  />
                 </Switch>
               )}
             />
@@ -93,7 +133,16 @@ class Frame extends Component {
               render={({ match }) => (
                 <Switch>
                   <Route path="/home/:id" component={ArticleView} />
-                  <Route path={match.path} component={HomeView} />
+                  <Route
+                    path={match.path}
+                    render={props =>
+                      <TopicsView
+                        fetchTopics={fetchData}
+                        request={getHomeTopics}
+                        {...props}
+                      />
+                    }
+                  />
                 </Switch>
               )}
             />
@@ -122,6 +171,7 @@ Frame.propTypes = {
   }),
   historyPush: PropTypes.func,
   historyPop: PropTypes.func,
+  fetchData: PropTypes.func,
 };
 
 Frame.defaultProps = {
@@ -131,6 +181,7 @@ Frame.defaultProps = {
   closeSidebar: () => null,
   historyPush: () => null,
   historyPop: () => null,
+  fetchData: () => null,
   history: {},
 };
 
@@ -140,5 +191,6 @@ export default withRouter(connect(
     closeSidebar: bindActionCreators(closeSideBar, dispatch),
     historyPush: bindActionCreators(push, dispatch),
     historyPop: bindActionCreators(pop, dispatch),
+    fetchData: bindActionCreators(fetchTopics, dispatch),
   }),
 )(Frame));

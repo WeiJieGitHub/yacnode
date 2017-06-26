@@ -6,7 +6,7 @@ import styles from './Logo.scss';
 
 function Logo() {
   return (
-    <NavLink to="/" activeClassName="" styleName="wrapper">
+    <NavLink to="/home" activeClassName="" styleName="wrapper">
       <img src={logo} alt="cnode" />
     </NavLink>
   );
