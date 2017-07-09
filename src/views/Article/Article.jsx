@@ -22,15 +22,13 @@ highlight.configure({
 
 export class Article extends Component {
   componentDidMount() {
+    const { history } = this.props;
     const { id } = this.props.match.params;
-    this.fetchData(id);
-  }
-
-  componentWillUpdate(nextProps) {
-    const currentId = this.props.match.params.id;
-    const nextId = nextProps.match.params.id;
-    if (currentId !== nextId) {
-      this.fetchData(nextId);
+    console.log(this.props.article);
+    if (history.action === 'PUSH' || this.props.article.id.length === 0) {
+      this.fetchData(id);
+    } else if (history.action === 'POP' && this.props.article.id !== id) {
+      this.fetchData(id);
     }
   }
 
@@ -133,6 +131,9 @@ Article.propTypes = {
     }),
   }),
   fetchArticleContent: PropTypes.func,
+  history: PropTypes.shape({
+    action: PropTypes.string,
+  }),
 };
 
 Article.defaultProps = Object.assign({
@@ -142,6 +143,9 @@ Article.defaultProps = Object.assign({
     },
   },
   fetchArticleContent: () => null,
+  history: {
+    action: '',
+  },
 }, initialState);
 
 export default connect(

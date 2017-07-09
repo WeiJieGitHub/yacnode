@@ -30,7 +30,7 @@ const FETCH_ARTICLE_CONTENT_FAIL = 'FETCH_ARTICLE_CONTENT_FAIL';
 
 export const fetchArticleContent = params => (dispatch) => {
   dispatch({ type: FETCH_ARTICLE_CONTENT });
-  getArticleContent(params).then(response => response.json()).then((response) => {
+  return getArticleContent(params).then(response => response.json()).then((response) => {
     dispatch({ type: FETCH_ARTICLE_CONTENT_SUCCESS, payload: response.data });
   }).catch((error) => {
     dispatch({ type: FETCH_ARTICLE_CONTENT_FAIL, error });

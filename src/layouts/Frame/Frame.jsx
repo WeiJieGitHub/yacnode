@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { closeSideBar } from 'components/SideBar/SideBarRedux';
-import { push, pop } from 'reduxConf/historyReducer';
+import { push, pop, saveToLocal } from 'reduxConf/historyReducer';
 import TopicsView from 'views/Topics/Topics';
 import ArticleView from 'views/Article/Article';
 import Header from 'layouts/Header/Header';
@@ -22,24 +22,29 @@ import 'styles/index.scss';
 
 class Frame extends Component {
   componentDidMount() {
-    const { historyPush, historyPop, history } = this.props;
+    const { historyCachePush, historyCachePop, history } = this.props;
     let prevKey = `${history.location.pathname}${history.location.search}`;
-    historyPush(prevKey);
+    let currentKey = '';
+    historyCachePush(prevKey);
     history.listen((location, action) => {
-      const currentKey = `${location.pathname}${location.search}`;
+      currentKey = `${location.pathname}${location.search}`;
       switch (action) {
         case 'PUSH':
-          historyPush(prevKey);
+          historyCachePush(prevKey);
           prevKey = currentKey;
           break;
         case 'POP':
-          historyPush(prevKey);
-          historyPop(currentKey);
+          historyCachePush(prevKey);
+          historyCachePop(currentKey);
           prevKey = currentKey;
           break;
         default:
           break;
       }
+    });
+    window.addEventListener('beforeunload', () => {
+      historyCachePush(prevKey);
+      this.props.saveHistoryCacheToLocal('historyCache');
     });
   }
 
@@ -169,8 +174,9 @@ Frame.propTypes = {
     action: PropTypes.string,
     listen: PropTypes.func,
   }),
-  historyPush: PropTypes.func,
-  historyPop: PropTypes.func,
+  historyCachePush: PropTypes.func,
+  historyCachePop: PropTypes.func,
+  saveHistoryCacheToLocal: PropTypes.func,
   fetchData: PropTypes.func,
 };
 
@@ -179,9 +185,10 @@ Frame.defaultProps = {
     openSidebar: false,
   },
   closeSidebar: () => null,
-  historyPush: () => null,
-  historyPop: () => null,
+  historyCachePush: () => null,
+  historyCachePop: () => null,
   fetchData: () => null,
+  saveHistoryCacheToLocal: () => null,
   history: {},
 };
 
@@ -189,8 +196,9 @@ export default withRouter(connect(
   state => ({ sidebar: state.sidebar }),
   dispatch => ({
     closeSidebar: bindActionCreators(closeSideBar, dispatch),
-    historyPush: bindActionCreators(push, dispatch),
-    historyPop: bindActionCreators(pop, dispatch),
+    historyCachePush: bindActionCreators(push, dispatch),
+    historyCachePop: bindActionCreators(pop, dispatch),
+    saveHistoryCacheToLocal: bindActionCreators(saveToLocal, dispatch),
     fetchData: bindActionCreators(fetchTopics, dispatch),
   }),
 )(Frame));

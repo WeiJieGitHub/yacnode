@@ -17,13 +17,20 @@ export class Topics extends Component {
     }
   }
 
-  componentWillUpdate(nextProps) {
-    const currentSearch = this.props.location.search;
-    const nextSearch = nextProps.location.search;
-    const { history } = this.props;
-    if (currentSearch !== nextSearch && history.action === 'PUSH') {
-      this.fetchData(nextSearch);
+  shouldComponentUpdate(nextProps) {
+    const { location, history } = this.props;
+    const nextLocation = nextProps.location;
+
+    const path = `${location.pathname}${location.search}`;
+    const nextPath = `${nextLocation.pathname}${nextLocation.search}`;
+    switch (true) {
+      case path !== nextPath && history.action === 'PUSH':
+        this.fetchData(nextLocation.search);
+        return false;
+      default:
+        break;
     }
+    return true;
   }
 
   fetchData(search) {
@@ -84,4 +91,5 @@ Topics.defaultProps = {
 
 export default connect(
   state => state.topics,
+
 )(Topics);

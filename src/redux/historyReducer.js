@@ -1,8 +1,9 @@
-export class HistoryStack {
-  constructor(cache = {}, limit = 50, length = 0) {
-    this.cache = cache;
-    this.limit = limit;
-    this.length = length;
+const defaultOptions = { cache: {}, limit: 50, length: 0 };
+export class CreateHistoryStack {
+  constructor(options = defaultOptions) {
+    this.cache = options.cache;
+    this.limit = options.limit;
+    this.length = options.length;
   }
 
   getEarliestKey() {
@@ -48,14 +49,34 @@ export class HistoryStack {
     if (item === undefined) return null;
     return item.state;
   }
+
+  saveToLocal(key) {
+    const cacheString = JSON.stringify({
+      limit: this.limit,
+      cache: this.cache,
+      length: this.length,
+    });
+    localStorage.setItem(key, cacheString);
+  }
 }
 
-const HISTORY_PUSH = 'HISTORY_PUSH';
-const HISTORY_POP = 'HISTORY_POP';
+const HistoryStack = (() => {
+  let instance;
+  return (options) => {
+    if (instance === undefined) {
+      instance = new CreateHistoryStack(options);
+    }
+    return instance;
+  };
+})();
+
+const HISTORY_CACHE_PUSH = 'HISTORY_CACHE_PUSH';
+const HISTORY_CACHE_POP = 'HISTORY_CACHE_POP';
+const HISTORY_CACHE_SAVE_TO_LOCAL = 'HISTORY_CACHE_SAVE_TO_LOCAL';
 
 export function push(path) {
   return {
-    type: HISTORY_PUSH,
+    type: HISTORY_CACHE_PUSH,
     payload: {
       path,
     },
@@ -64,32 +85,42 @@ export function push(path) {
 
 export function pop(path) {
   return {
-    type: HISTORY_POP,
+    type: HISTORY_CACHE_POP,
     payload: {
       path,
     },
   };
 }
 
-function historyReducer(reducer) {
-  const cache = new HistoryStack();
+export function saveToLocal(key = 'historyCache') {
+  return {
+    type: HISTORY_CACHE_SAVE_TO_LOCAL,
+    payload: {
+      key,
+    },
+  };
+}
+
+export default (options = defaultOptions) => {
+  const cache = new HistoryStack(options);
   let store = null;
-  return (state, action) => {
+  return reducer => (state, action) => {
     switch (action.type) {
-      case HISTORY_POP:
+      case HISTORY_CACHE_POP:
         store = cache.get(action.payload.path);
         if (store !== null) {
           return store;
         }
         break;
-      case HISTORY_PUSH:
+      case HISTORY_CACHE_PUSH:
         cache.put(action.payload.path, state);
+        break;
+      case HISTORY_CACHE_SAVE_TO_LOCAL:
+        cache.saveToLocal(action.payload.key);
         break;
       default:
         break;
     }
-    return reducer(state, action);
+    return Object.assign(reducer(state, action));
   };
-}
-
-export default historyReducer;
+};

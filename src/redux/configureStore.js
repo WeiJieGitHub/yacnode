@@ -1,9 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
-import historyReducer from './historyReducer';
+import createHistoryReducer from './historyReducer';
 
-const reducer = historyReducer(combineReducers(Object.assign({}, rootReducer)));
+const localHistoryCache = JSON.parse(localStorage.getItem('historyCache'));
+const historyReducer = createHistoryReducer(localHistoryCache);
+
+const reducer = historyReducer(combineReducers(rootReducer));
 
 export default function configureStore(initalState) {
   const store = createStore(
