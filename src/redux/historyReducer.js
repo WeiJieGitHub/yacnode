@@ -1,4 +1,4 @@
-const defaultOptions = { cache: {}, limit: 50, length: 0 };
+export const defaultOptions = { cache: {}, limit: 50, length: 0 };
 export class CreateHistoryStack {
   constructor(options = defaultOptions) {
     this.cache = options.cache;
@@ -121,6 +121,6 @@ export default (options = defaultOptions) => {
       default:
         break;
     }
-    return Object.assign(reducer(state, action));
+    return reducer(state, action);
   };
 };

@@ -24,10 +24,7 @@ export class Article extends Component {
   componentDidMount() {
     const { history } = this.props;
     const { id } = this.props.match.params;
-    console.log(this.props.article);
     if (history.action === 'PUSH' || this.props.article.id.length === 0) {
-      this.fetchData(id);
-    } else if (history.action === 'POP' && this.props.article.id !== id) {
       this.fetchData(id);
     }
   }

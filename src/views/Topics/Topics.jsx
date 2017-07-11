@@ -25,7 +25,7 @@ export class Topics extends Component {
     const nextPath = `${nextLocation.pathname}${nextLocation.search}`;
     switch (true) {
       case path !== nextPath && history.action === 'PUSH':
-        this.fetchData(nextLocation.search);
+        this.fetchData(nextLocation.search, nextProps.request);
         return false;
       default:
         break;
@@ -33,8 +33,7 @@ export class Topics extends Component {
     return true;
   }
 
-  fetchData(search) {
-    const { request } = this.props;
+  fetchData(search, request = this.props.request) {
     const { page } = parse(search.slice(1));
     const params = isNaN(parseInt(page, 10)) ? { page: 1 } : { page };
     this.props.fetchTopics(request, params);
