@@ -73,3 +73,39 @@ export const omit = (obj, ...props) => {
   });
   return result;
 };
+
+export const debounce = (fn, wait, isLeading) => {
+  let timeout;
+  let context;
+  let args;
+  let timestamp;
+  let result;
+
+  return () => {
+    const isCallLeading = (isLeading === true && timeout === undefined);
+    context = this;
+    args = arguments;
+    timestamp = Date.now();
+    if (timeout === undefined) {
+      timeout = setTimeout(function later() {
+        const last = Date.now() - timestamp;
+        if (last < wait && last >= 0) {
+          timeout = setTimeout(later, wait - last);
+        } else {
+          timeout = undefined;
+          if (!isCallLeading) {
+            result = fn.apply(context, args);
+            args = undefined;
+            context = args;
+          }
+        }
+      }, wait);
+    }
+    if (isCallLeading) {
+      result = fn.apply(context, args);
+      args = undefined;
+      context = args;
+    }
+    return result;
+  };
+};

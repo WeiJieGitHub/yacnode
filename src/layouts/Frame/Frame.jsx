@@ -21,11 +21,12 @@ import {
 import 'styles/index.scss';
 
 class Frame extends Component {
-  componentDidMount() {
+  componentWillMount() {
     const { historyCachePush, historyCachePop, history } = this.props;
     let prevKey = `${history.location.pathname}${history.location.search}`;
     let currentKey = '';
     historyCachePush(prevKey);
+    historyCachePop(prevKey);
     history.listen((location, action) => {
       currentKey = `${location.pathname}${location.search}`;
       switch (action) {

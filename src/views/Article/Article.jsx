@@ -8,8 +8,8 @@ import Container from 'components/Container/Container';
 import Loading from 'components/Loading/Loading';
 import CSSModules from 'react-css-modules';
 import icons from 'styles/icons.scss';
-import { timeFlies } from 'utils/utils';
-import { fetchArticleContent, initialState } from './ArticleRedux';
+import { timeFlies, debounce } from 'utils/utils';
+import { fetchArticleContent, initialState, saveScrollTop } from './ArticleRedux';
 import styles from './Article.scss';
 
 function createMarkup(markup) {
@@ -27,12 +27,29 @@ export class Article extends Component {
     if (history.action === 'PUSH' || this.props.article.id.length === 0) {
       this.fetchData(id);
     }
+    this.onScroll = debounce(() => {
+      const topValue = document.body.scrollTop;
+      this.props.saveArticleScrollTop(topValue);
+    }, 50);
+    window.addEventListener('scroll', this.onScroll);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (this.props.article.id !== nextProps.article.id) {
+      return true;
+    }
+    return false;
   }
 
   componentDidUpdate() {
+    document.body.scrollTop = this.props.scrollTop;
     Array.prototype.slice.call(document.querySelectorAll('pre code')).forEach((block) => {
       highlight.highlightBlock(block);
     });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
   }
 
   fetchData(id) {
@@ -131,6 +148,8 @@ Article.propTypes = {
   history: PropTypes.shape({
     action: PropTypes.string,
   }),
+  scrollTop: PropTypes.number,
+  saveArticleScrollTop: PropTypes.func,
 };
 
 Article.defaultProps = Object.assign({
@@ -147,5 +166,8 @@ Article.defaultProps = Object.assign({
 
 export default connect(
   state => state.article,
-  dispatch => ({ fetchArticleContent: bindActionCreators(fetchArticleContent, dispatch) }),
+  dispatch => ({
+    fetchArticleContent: bindActionCreators(fetchArticleContent, dispatch),
+    saveArticleScrollTop: bindActionCreators(saveScrollTop, dispatch),
+  }),
 )(CSSModules(Article, styles));
