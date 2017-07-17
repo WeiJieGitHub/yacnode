@@ -32,7 +32,7 @@ export class Article extends Component {
   componentDidMount() {
     const { history } = this.props;
     const { id } = this.props.match.params;
-    if (history.action === 'PUSH' || this.props.article.id.length === 0) {
+    if (history.action === 'PUSH' || this.props.article.id === '') {
       this.fetchData(id);
     }
     window.addEventListener('scroll', this.onScroll);
@@ -64,7 +64,7 @@ export class Article extends Component {
     const { article, loadState } = this.props;
     let result;
 
-    if (loadState === 'READY') {
+    if (loadState === 'READY' && article.id !== '') {
       const comments = article.replies.map((comment, i) => (
         <div styleName="comment" key={comment.id}>
           <div styleName="comment__avatar">

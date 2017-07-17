@@ -32,6 +32,7 @@ export class Topics extends Component {
   componentDidMount() {
     const { history } = this.props;
     const { search } = this.props.location;
+
     if (history.action === 'PUSH' || this.props.topics.length === 0) {
       this.fetchData(search);
     }

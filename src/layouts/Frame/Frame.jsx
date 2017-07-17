@@ -23,35 +23,30 @@ import 'styles/index.scss';
 class Frame extends Component {
   constructor(props) {
     super(props);
-    const { historyCachePush, historyCachePop, history } = this.props;
-    let prevKey = `${history.location.pathname}${history.location.search}`;
-    let currentKey = '';
-    historyCachePush(prevKey);
+    const { historyCachePush, historyCachePop, history, saveHistoryCacheToLocal } = this.props;
+    const prevKey = `${history.location.pathname}${history.location.search}`;
     historyCachePop(prevKey);
-    history.listen((location, action) => {
-      currentKey = `${location.pathname}${location.search}`;
-      switch (action) {
-        case 'PUSH':
-          historyCachePush(prevKey);
-          prevKey = currentKey;
-          break;
-        case 'POP':
-          historyCachePush(prevKey);
-          historyCachePop(currentKey);
-          prevKey = currentKey;
-          break;
-        default:
-          break;
-      }
-    });
     this.beforeunload = () => {
       historyCachePush(prevKey);
-      this.props.saveHistoryCacheToLocal('historyCache');
+      saveHistoryCacheToLocal('historyCache');
     };
   }
 
   componentDidMount() {
     window.addEventListener('beforeunload', this.beforeunload);
+  }
+
+  componentWillUpdate(nextProps) {
+    const { historyCachePush, historyCachePop, location } = this.props;
+    const path = `${location.pathname}${location.search}`;
+    const nextPath = `${nextProps.location.pathname}${nextProps.location.search}`;
+
+    if (path !== nextPath) {
+      historyCachePush(path);
+      if (nextProps.history.action === 'POP') {
+        historyCachePop(nextPath);
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -184,6 +179,10 @@ Frame.propTypes = {
     action: PropTypes.string,
     listen: PropTypes.func,
   }),
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+    search: PropTypes.string,
+  }),
   historyCachePush: PropTypes.func,
   historyCachePop: PropTypes.func,
   saveHistoryCacheToLocal: PropTypes.func,
@@ -199,7 +198,14 @@ Frame.defaultProps = {
   historyCachePop: () => null,
   fetchData: () => null,
   saveHistoryCacheToLocal: () => null,
-  history: {},
+  history: {
+    action: '',
+    listen: () => null,
+  },
+  location: {
+    pathname: '',
+    search: '',
+  },
 };
 
 export default withRouter(connect(
