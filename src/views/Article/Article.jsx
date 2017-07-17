@@ -21,24 +21,28 @@ highlight.configure({
 });
 
 export class Article extends Component {
+  constructor(props) {
+    super(props);
+    this.onScroll = debounce(() => {
+      const topValue = document.body.scrollTop;
+      this.props.saveArticleScrollTop(topValue);
+    }, 50);
+  }
+
   componentDidMount() {
     const { history } = this.props;
     const { id } = this.props.match.params;
     if (history.action === 'PUSH' || this.props.article.id.length === 0) {
       this.fetchData(id);
     }
-    this.onScroll = debounce(() => {
-      const topValue = document.body.scrollTop;
-      this.props.saveArticleScrollTop(topValue);
-    }, 50);
     window.addEventListener('scroll', this.onScroll);
   }
 
   shouldComponentUpdate(nextProps) {
-    if (this.props.article.id !== nextProps.article.id) {
-      return true;
+    if (this.props.article.id === nextProps.article.id) {
+      return false;
     }
-    return false;
+    return true;
   }
 
   componentDidUpdate() {

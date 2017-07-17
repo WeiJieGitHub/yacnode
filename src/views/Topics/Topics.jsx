@@ -20,6 +20,15 @@ const isTopicsEqual = (oneTopics, twoTopics) => {
 };
 */
 export class Topics extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onScroll = debounce(() => {
+      const topValue = document.body.scrollTop;
+      this.props.saveTopicsScrollTop(topValue);
+    }, 50);
+  }
+
   componentDidMount() {
     const { history } = this.props;
     const { search } = this.props.location;
@@ -27,11 +36,8 @@ export class Topics extends Component {
       this.fetchData(search);
     }
 
-    this.onScroll = debounce(() => {
-      const topValue = document.body.scrollTop;
-      this.props.saveTopicsScrollTop(topValue);
-    }, 50);
     window.addEventListener('scroll', this.onScroll);
+    document.body.scrollTop = this.props.scrollTop;
   }
 
   shouldComponentUpdate(nextProps) {

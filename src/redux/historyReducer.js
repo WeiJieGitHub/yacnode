@@ -109,12 +109,10 @@ export default (options = defaultOptions) => {
       case HISTORY_CACHE_POP:
         store = cache.get(action.payload.path);
         if (store !== null) {
-          console.log(action.type, action.payload.path, store.topics);
           return store;
         }
         break;
       case HISTORY_CACHE_PUSH:
-        console.log(action.type, action.payload.path, state.topics);
         cache.put(action.payload.path, state);
         break;
       case HISTORY_CACHE_SAVE_TO_LOCAL:

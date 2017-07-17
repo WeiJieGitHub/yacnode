@@ -21,7 +21,8 @@ import {
 import 'styles/index.scss';
 
 class Frame extends Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     const { historyCachePush, historyCachePop, history } = this.props;
     let prevKey = `${history.location.pathname}${history.location.search}`;
     let currentKey = '';
@@ -43,10 +44,18 @@ class Frame extends Component {
           break;
       }
     });
-    window.addEventListener('beforeunload', () => {
+    this.beforeunload = () => {
       historyCachePush(prevKey);
       this.props.saveHistoryCacheToLocal('historyCache');
-    });
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener('beforeunload', this.beforeunload);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', this.beforeunload);
   }
 
   render() {
