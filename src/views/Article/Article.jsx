@@ -38,13 +38,6 @@ export class Article extends Component {
     window.addEventListener('scroll', this.onScroll);
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (this.props.article.id === nextProps.article.id) {
-      return false;
-    }
-    return true;
-  }
-
   componentDidUpdate() {
     document.body.scrollTop = this.props.scrollTop;
     Array.prototype.slice.call(document.querySelectorAll('pre code')).forEach((block) => {
