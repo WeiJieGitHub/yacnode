@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import highlight from 'highlight.js';
-import 'highlight.js/styles/github.css';
+import 'highlight.js/styles/github-gist.css';
 import Container from 'components/Container/Container';
 import Loading from 'components/Loading/Loading';
 import CSSModules from 'react-css-modules';

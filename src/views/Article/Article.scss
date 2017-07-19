@@ -125,3 +125,8 @@
   color: get-color(dusty-grey);
   font-size: get-font-size(-1);
 }
+
+// highlight
+:global .hljs {
+  background-color: get-color(concrete);
+}
