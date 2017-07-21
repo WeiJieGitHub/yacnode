@@ -6,26 +6,19 @@ import Container from 'components/Container/Container';
 import TopicList from 'components/TopicList/TopicList';
 import Pagination from 'components/Pagination/Pagination';
 import Loading from 'components/Loading/Loading';
+import ScrollTopManager from 'components/ScrollTopManager/ScrollTopManager';
 import { parse } from 'querystring';
 import getPaginationInfo from 'utils/getPaginationInfo';
 import { debounce } from 'utils/utils';
 import { saveScrollTop } from './TopicsRedux';
-/*
-const isTopicsEqual = (oneTopics, twoTopics) => {
-  if (oneTopics.length !== twoTopics.length) return false;
-  for (let i = 0, len = oneTopics.length; i < len; i += 1) {
-    if (oneTopics[i].id !== twoTopics[i].id) return false;
-  }
-  return true;
-};
-*/
+
 export class Topics extends Component {
   constructor(props) {
     super(props);
 
     this.onScroll = debounce(() => {
       const topValue = document.body.scrollTop;
-      this.props.saveTopicsScrollTop(topValue);
+      this.props.saveScrollTop(topValue);
     }, 50);
   }
 
@@ -36,9 +29,6 @@ export class Topics extends Component {
     if (history.action === 'PUSH' || this.props.topics.length === 0) {
       this.fetchData(search);
     }
-
-    window.addEventListener('scroll', this.onScroll);
-    document.body.scrollTop = this.props.scrollTop;
   }
 
   shouldComponentUpdate(nextProps) {
@@ -55,14 +45,6 @@ export class Topics extends Component {
         break;
     }
     return true;
-  }
-
-  componentDidUpdate() {
-    document.body.scrollTop = this.props.scrollTop;
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll);
   }
 
   fetchData(search, request = this.props.request) {
@@ -103,8 +85,7 @@ Topics.propTypes = {
     action: PropTypes.string,
   }),
   request: PropTypes.func,
-  scrollTop: PropTypes.number,
-  saveTopicsScrollTop: PropTypes.func,
+  saveScrollTop: PropTypes.func,
 };
 
 Topics.defaultProps = {
@@ -120,11 +101,10 @@ Topics.defaultProps = {
   history: {
     action: '',
   },
-  scrollTop: 0,
-  saveTopicsScrollTop: () => null,
+  saveScrollTop: () => null,
 };
 
 export default connect(
   state => state.topics,
-  dispatch => ({ saveTopicsScrollTop: bindActionCreators(saveScrollTop, dispatch) }),
-)(Topics);
+  dispatch => ({ saveScrollTop: bindActionCreators(saveScrollTop, dispatch) }),
+)(ScrollTopManager(Topics));

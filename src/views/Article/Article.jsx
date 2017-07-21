@@ -6,9 +6,10 @@ import highlight from 'highlight.js';
 import 'highlight.js/styles/github-gist.css';
 import Container from 'components/Container/Container';
 import Loading from 'components/Loading/Loading';
+import ScrollTopManager from 'components/ScrollTopManager/ScrollTopManager';
 import CSSModules from 'react-css-modules';
 import icons from 'styles/icons.scss';
-import { timeFlies, debounce } from 'utils/utils';
+import { timeFlies } from 'utils/utils';
 import { fetchArticleContent, initialState, saveScrollTop } from './ArticleRedux';
 import styles from './Article.scss';
 
@@ -21,32 +22,18 @@ highlight.configure({
 });
 
 export class Article extends Component {
-  constructor(props) {
-    super(props);
-    this.onScroll = debounce(() => {
-      const topValue = document.body.scrollTop;
-      this.props.saveArticleScrollTop(topValue);
-    }, 50);
-  }
-
   componentDidMount() {
     const { history } = this.props;
     const { id } = this.props.match.params;
     if (history.action === 'PUSH' || this.props.article.id === '') {
       this.fetchData(id);
     }
-    window.addEventListener('scroll', this.onScroll);
   }
 
   componentDidUpdate() {
-    document.body.scrollTop = this.props.scrollTop;
     Array.prototype.slice.call(document.querySelectorAll('pre code')).forEach((block) => {
       highlight.highlightBlock(block);
     });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll);
   }
 
   fetchData(id) {
@@ -145,11 +132,9 @@ Article.propTypes = {
   history: PropTypes.shape({
     action: PropTypes.string,
   }),
-  scrollTop: PropTypes.number,
-  saveArticleScrollTop: PropTypes.func,
 };
 
-Article.defaultProps = Object.assign({
+Article.defaultProps = Object.assign(initialState, {
   match: {
     params: {
       id: '',
@@ -159,12 +144,12 @@ Article.defaultProps = Object.assign({
   history: {
     action: '',
   },
-}, initialState);
+});
 
 export default connect(
   state => state.article,
   dispatch => ({
     fetchArticleContent: bindActionCreators(fetchArticleContent, dispatch),
-    saveArticleScrollTop: bindActionCreators(saveScrollTop, dispatch),
+    saveScrollTop: bindActionCreators(saveScrollTop, dispatch),
   }),
-)(CSSModules(Article, styles));
+)(ScrollTopManager(CSSModules(Article, styles)));
