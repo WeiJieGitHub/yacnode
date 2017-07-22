@@ -134,7 +134,7 @@ Article.propTypes = {
   }),
 };
 
-Article.defaultProps = Object.assign(initialState, {
+Article.defaultProps = Object.assign({
   match: {
     params: {
       id: '',
@@ -144,7 +144,7 @@ Article.defaultProps = Object.assign(initialState, {
   history: {
     action: '',
   },
-});
+}, initialState);
 
 export default connect(
   state => state.article,
