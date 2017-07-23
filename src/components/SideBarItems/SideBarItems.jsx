@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
-import routerMap from 'routes/routerMap';
+import routes from 'routes/routerMap';
 import styles from './SideBarItems.scss';
 
 class SideBarItems extends Component {
@@ -12,17 +12,17 @@ class SideBarItems extends Component {
   }
 
   render() {
-    const items = Object.keys(routerMap).map(key => (
+    const items = routes.map(route => (
       <NavLink
-        exact={key === '/'}
-        to={key}
+        exact={route.path === '/'}
+        to={route.path}
         styleName="item"
         activeClassName={styles['item--active']}
-        key={key}
+        key={route.path}
         onClick={(e) => { this.handleItemClick(e); }}
         onTouchEnd={(e) => { this.handleItemClick(e); }}
       >
-        { routerMap[key].title }
+        { route.title }
       </NavLink>
     ));
 

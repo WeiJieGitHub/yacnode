@@ -1,18 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
-import routerMap from 'routes/routerMap';
+import routes from 'routes/routerMap';
 import styles from './NavigationItems.scss';
 
 function NavigationItems() {
-  const items = Object.keys(routerMap).map(key => (
+  const items = routes.map(route => (
     <NavLink
-      to={key}
+      to={route.path}
       styleName="item"
       activeClassName={styles['item--active']}
-      key={key}
+      key={route.path}
     >
-      { routerMap[key].title }
+      { route.title }
     </NavLink>
   ));
 
