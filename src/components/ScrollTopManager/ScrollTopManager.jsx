@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { debounce } from 'utils/utils';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default (WrappedComponent) => {
+export default (WrappedComponent, saveScrollTop = () => null) => {
   class ScrollTopManager extends Component {
     constructor(props) {
       super(props);
@@ -46,5 +48,7 @@ export default (WrappedComponent) => {
     loadState: 'READY',
   };
 
-  return ScrollTopManager;
+  return connect(null, dispatch => ({
+    saveScrollTop: bindActionCreators(saveScrollTop, dispatch),
+  }))(ScrollTopManager);
 };

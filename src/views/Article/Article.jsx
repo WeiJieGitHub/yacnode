@@ -150,6 +150,5 @@ export default connect(
   state => state.article,
   dispatch => ({
     fetchArticleContent: bindActionCreators(fetchArticleContent, dispatch),
-    saveScrollTop: bindActionCreators(saveScrollTop, dispatch),
   }),
-)(ScrollTopManager(CSSModules(Article, styles)));
+)(ScrollTopManager(CSSModules(Article, styles), saveScrollTop));

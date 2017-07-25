@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { closeSideBar } from 'components/SideBar/SideBarRedux';
 import StoreCacheManager from 'components/StoreCacheManager/StoreCacheManager';
-import { push, pop, saveToLocal } from 'components/StoreCacheManager/StoreCacheManagerRedux';
 import ArticleView from 'views/Article/Article';
 import Header from 'layouts/Header/Header';
 import SideBar from 'components/SideBar/SideBar';
@@ -72,8 +71,5 @@ export default withRouter(connect(
   state => ({ sidebar: state.sidebar }),
   dispatch => ({
     closeSidebar: bindActionCreators(closeSideBar, dispatch),
-    historyCachePush: bindActionCreators(push, dispatch),
-    historyCachePop: bindActionCreators(pop, dispatch),
-    saveHistoryCacheToLocal: bindActionCreators(saveToLocal, dispatch),
   }),
 )(StoreCacheManager(Frame)));

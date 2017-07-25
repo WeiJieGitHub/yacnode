@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { push, pop, saveToLocal } from 'components/StoreCacheManager/StoreCacheManagerRedux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 export default (Wrapped) => {
   class StoreCacheManager extends Component {
@@ -68,5 +71,12 @@ export default (Wrapped) => {
     },
   };
 
-  return StoreCacheManager;
+  return connect(
+    null,
+    dispatch => ({
+      historyCachePush: bindActionCreators(push, dispatch),
+      historyCachePop: bindActionCreators(pop, dispatch),
+      saveHistoryCacheToLocal: bindActionCreators(saveToLocal, dispatch),
+    }),
+  )(StoreCacheManager);
 };

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Container from 'components/Container/Container';
 import TopicList from 'components/TopicList/TopicList';
 import Pagination from 'components/Pagination/Pagination';
@@ -106,5 +105,4 @@ Topics.defaultProps = {
 
 export default connect(
   state => state.topics,
-  dispatch => ({ saveScrollTop: bindActionCreators(saveScrollTop, dispatch) }),
-)(ScrollTopManager(Topics));
+)(ScrollTopManager(Topics, saveScrollTop));
