@@ -22,7 +22,7 @@ module.exports = {
       name: 'vendor',
       filename: 'vendor.[chunkhash].js',
       minChunks: (module) => {
-        return module.context && 
+        return module.context &&
                module.context.indexOf('node_modules') !== -1;
       },
     }),
@@ -47,6 +47,15 @@ module.exports = {
         presets: ['es2015', 'react'],
       },
       exclude: /node_modules/,
+    }, {
+      test: /\.svg$/,
+      loader: 'file-loader',
+    }, {
+      test: /\.(woff|eot|ttf)$/,
+      loaders: ['url-loader?prefix=font/&limit=10000&mimetype=application/font-woff'],
+    }, {
+      test: /\.css$/,
+      loaders: ['style-loader', 'css-loader'],
     }],
   },
   resolve: {
@@ -57,7 +66,10 @@ module.exports = {
       'utils': path.resolve(SRC_PATH, 'utils'),
       'containers': path.resolve(SRC_PATH, 'containers'),
       'styles': path.resolve(SRC_PATH, 'styles'),
+      'assets': path.resolve(SRC_PATH, 'assets'),
+      'layouts': path.resolve(SRC_PATH, 'layouts'),
       'reduxConf': path.resolve(SRC_PATH, 'redux'),
+      'routes': path.resolve(SRC_PATH, 'routes'),
     },
   },
 };
