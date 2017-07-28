@@ -1,5 +1,6 @@
 # YACNODE 
 如你所见，又一个基于 React 技术栈的 cnode 社区的客户端。再不弄下 React 我的 React 技术就要长毛啦。
+在线预览地址，[http://yacnode.weijieblog.com/](http://yacnode.weijieblog.com/)。
 
 ## 编码规范
 
